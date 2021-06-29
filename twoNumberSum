@@ -1,0 +1,24 @@
+function twoNumberSum(array, targetSum) {
+  // Write your code here.
+	let n = array.length;
+	let hmap  = new Map();
+	let res =  new Array;
+	for (let i = 0 ; i<n ; i++){
+	
+		if( hmap.get(targetSum - array[i] )  ){
+			
+		res.push(array[i]);
+		res.push(targetSum - array[i] );
+							
+		console.log(res +" " +  targetSum + " " + typeof res)
+		return res;
+		}
+		hmap.set(array[i] , true) 
+	}
+
+	return res;
+	
+}
+
+// Do not edit the line below.
+exports.twoNumberSum = twoNumberSum;
