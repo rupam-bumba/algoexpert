@@ -1,3 +1,32 @@
+function isValidSubsequence(array, sequence) {
+	let sind = 0;
+		
+	for (let i =0 ; i < array.length ; i++ ){
+console.log(` ${sequence[sind]}  ${array[i]}` )
+			if (sequence[sind] === array[i]){
+			sind++;
+		}
+	}
+	console.log(sequence.length )
+if (sind == sequence.length  ){
+	return true 
+}else
+	return false
+
+}
+
+// Do not edit the line below.
+exports.isValidSubsequence = isValidSubsequence;
+
+
+
+
+
+
+
+
+
+
 function tournamentWinner(competitions, results) {
   // Write your code here.
 	let canobj = {};
