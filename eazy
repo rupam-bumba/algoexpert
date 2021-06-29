@@ -1,0 +1,1074 @@
+function tournamentWinner(competitions, results) {
+  // Write your code here.
+	let canobj = {};
+	let higestNumber = 0;
+	let higestName = ""
+	
+	competitions.map(( item , index )=>{
+		if (typeof canobj[item[0]] === "undefined" ){
+			canobj[item[0]] = 0;
+		}
+		if (typeof canobj[item[1]] === "undefined" ){
+			canobj[item[1]] = 0;
+		}
+
+		if (results[index] == 1){
+			canobj[item[0]] = 3  + canobj[item[0]];
+			if (higestNumber < canobj[item[0]] ) {
+				higestNumber = canobj[item[0]]
+				higestName = item[0];
+			}
+		} else if (results[index] == 0){
+			canobj[item[1]] = 3 + canobj[item[1]]
+				if (higestNumber < canobj[item[1]] ) {
+				higestNumber = canobj[item[1]]
+				higestName = item[1];
+			}
+		}
+})
+  return higestName;
+}
+
+// Do not edit the line below.
+exports.tournamentWinner = tournamentWinner;
+
+
+
+function nonConstructibleChange(coins) {
+  // Write your code here.
+	
+	coins.sort((a, b) => a - b);
+		console.log(coins)
+	
+	let range = 0;
+	let rangefinal = 0;
+	if (coins[0] != 1){
+		  return 1;
+	}
+
+	for (let  item of coins ) {
+		
+		console.log(item + " " + range )
+		
+		if ( item > range +1  ){
+			return  range +1 ;
+			break;
+		}
+		range = item + range;
+	}
+
+return range +1
+}
+
+// Do not edit the line below.
+exports.nonConstructibleChange = nonConstructibleChange;
+
+
+
+
+
+
+
+
+
+function findClosestValueInBst(tree, target) {
+  // Write your code here.
+		console.log(target)
+let closest = tree.value; 
+	
+	while ( true ){ 
+
+		console.log(tree)
+	
+			if ( Math.abs( target - tree.value)  <  Math.abs( target - closest) ){ closest =  tree.value }
+			if(  tree.value == target ){
+			return target
+		}else if (tree.value < target  ){if (tree.right == null){break;}
+			
+		
+			
+			tree = tree.right;
+		}else if (tree.value > target  ){if (tree.left == null){break;}
+			
+		
+				tree = tree.left;
+		}
+				console.log(`closest ${closest}`)
+	}
+	
+	return closest;
+	
+}
+
+// This is the class of the input tree. Do not edit.
+class BST {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+// Do not edit the line below.
+exports.findClosestValueInBst = findClosestValueInBst;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// This is the class of the input root.
+// Do not edit it.
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+
+
+	 let arr = []; 
+
+function branch (root )  {
+		// console.log(root);
+	if (root.left != null ){
+		root.left.value = root.left.value + root.value;
+		branch(root.left);
+	}else{
+		
+		if (root.left == null && root.right == null ){
+			arr.push(root.value)
+		}
+	}
+	
+	if (root.right != null ){
+		root.right.value = root.right.value + root.value;
+		branch(root.right);
+	}else {
+
+	}
+	console.log( arr );
+	 
+	return arr; 
+	
+}
+
+
+ function branchSums (root) {
+branch (root)
+	 let p = arr;
+	 arr = [];
+	 console.log(p)
+	 console.log(arr)
+ 	 return p
+		
+}
+
+
+// Do not edit the lines below.
+exports.BinaryTree = BinaryTree;
+exports.branchSums = branchSums;
+
+
+
+
+
+
+
+
+
+
+
+
+let  count = 0; 
+function depths(root , rootcount){
+		
+
+		console.log(` ${root.value}  `)
+	count = rootcount + count;
+	rootcount++;
+	
+	if (root.left != null ){
+	
+		console.log(`\n count > > > > ${count}`)
+		console.log(`rootcount >>>>> ${rootcount}`)
+		
+		depths(root.left, rootcount  );
+	}
+	
+	if (root.right != null ){
+
+		console.log(`\n count > > > > ${count}`)
+		console.log(`rootcount >>>>> ${rootcount}`)
+
+		depths(root.right , rootcount );
+	}
+	
+}
+
+
+function nodeDepths(root ) {
+	depths(root , 0)	
+	
+	const ccc = count;
+	count = 0;
+	console.log(ccc);
+	return ccc;
+}
+
+// This is the class of the input binary tree.
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+// Do not edit the line below.
+exports.nodeDepths = nodeDepths;
+
+
+
+
+
+
+
+
+
+
+// Do not edit the class below except
+// for the depthFirstSearch method.
+// Feel free to add new properties
+// and methods to the class.
+class Node {
+  constructor(name) {
+    this.name = name;
+    this.children = [];
+  }
+
+  addChild(name) {
+    this.children.push(new Node(name));
+    return this;
+  }
+
+  depthFirstSearch(array) {
+    // Write your code here.
+		array.push(this.name)
+		if (this.children.length != 0 ){
+			for ( let item  of this.children ){
+					item.depthFirstSearch(array)
+			}
+			
+		}
+		return array
+		
+  }
+}
+
+// Do not edit the line below.
+exports.Node = Node;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function minimumWaitingTime(queries) {
+  // Write your code here.
+	let totalsum = 0;
+	let privious =0;
+
+	console.log(queries);
+	
+	queries.sort((a , b)=> a-b)
+	for ( let i =0 ; i< queries.length -1 ; i++ ){
+	let itemm = queries[i]
+	privious = privious + itemm;
+	totalsum = privious + totalsum;
+	console.log(privious);
+	console.log(totalsum);
+	}
+	
+	return totalsum
+
+}
+
+// Do not edit the line below.
+exports.minimumWaitingTime = minimumWaitingTime;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function classPhotos(redShirtHeights, blueShirtHeights) {
+  // Write your code here.
+	redShirtHeights.sort(  );
+	blueShirtHeights.sort(  );
+	
+	 console.log(redShirtHeights  )
+ console.log(  blueShirtHeights )
+
+	let strtind  = 0;
+	while (redShirtHeights[strtind] == blueShirtHeights[strtind]  ){
+		strtind++;
+		if (strtind == redShirtHeights.length ){
+			return false
+		}
+	}
+	
+	if(redShirtHeights[strtind]  > blueShirtHeights[strtind]){
+		for (let i =0 ; i <  blueShirtHeights.length ; i++  ){
+			if(redShirtHeights[i] <= blueShirtHeights[i] ){
+				 console.log(  "false" )
+				return false;
+			}
+		}
+	}else{
+		for (let i =0 ; i <  blueShirtHeights.length ; i++  ){
+ console.log(  redShirtHeights[i] + " " + blueShirtHeights[i] )
+				if(redShirtHeights[i] >= blueShirtHeights[i] ){
+ console.log(   "false")
+					
+				return false;
+			}
+		}
+	}
+	
+ console.log(   "end")
+
+  return true;
+}
+
+// Do not edit the line below.
+exports.classPhotos = classPhotos;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
+  // Write your code here.
+	
+	if (fastest){
+		redShirtSpeeds.sort( ( a , b ) => a-b );
+		blueShirtSpeeds.sort((a,b)=>b-a);
+		console.log(redShirtSpeeds);
+		console.log(blueShirtSpeeds);
+		let top =0;
+		
+	for (let i=0; i<redShirtSpeeds.length ; i++){
+		if (redShirtSpeeds[i] < blueShirtSpeeds[i] ){
+			top = top+ blueShirtSpeeds[i];
+		}
+		else{
+		top = top+ redShirtSpeeds[i];
+		}
+	}
+		
+		return top;
+		
+	}else{
+		redShirtSpeeds.sort( ( a , b ) => a-b);
+		blueShirtSpeeds.sort( ( a , b ) =>a-b );
+		console.log(redShirtSpeeds);
+		console.log(blueShirtSpeeds);
+		
+			let top =0;
+		
+	for (let i=0; i<redShirtSpeeds.length ; i++){
+		if (redShirtSpeeds[i] < blueShirtSpeeds[i] ){
+			top = top+ blueShirtSpeeds[i];
+		}
+		else{
+		top = top+ redShirtSpeeds[i];
+		}
+	}
+		
+		return top;
+		
+		
+	}
+	
+	
+	
+
+}
+
+// Do not edit the line below.
+exports.tandemBicycle = tandemBicycle;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// This is an input class. Do not edit.
+class LinkedList {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+function removeDuplicatesFromLinkedList(linkedList) {
+  // Write your code here.
+	let currentNode = linkedList
+	if (currentNode.next ==  null ){
+		 return linkedList;
+	}
+	while (currentNode.next !=  null  ){
+		console.log( currentNode.value )
+
+		if (currentNode.value == currentNode.next.value ){
+			if (currentNode.next.next != null){
+				currentNode.next = currentNode.next.next;
+			}
+		console.log(`  [${currentNode.value}]`)
+			if (currentNode.next.next ==null ){
+				console.log("currentNode");
+				currentNode.next = null
+				return linkedList
+}
+		
+		}else{
+			currentNode = currentNode.next;
+		}
+	}
+	
+	
+	
+  return linkedList;
+}
+
+
+
+// Do not edit the lines below.
+exports.LinkedList = LinkedList;
+exports.removeDuplicatesFromLinkedList = removeDuplicatesFromLinkedList;
+
+
+
+
+
+
+
+
+
+
+
+function fibioi(n) {
+	if (n == 0){
+	return 0
+	}else if (n == 1){
+		return 1
+	}else{
+		console.log(n);
+		return fibioi(n-2) + fibioi(n-1);
+	}
+
+	
+}
+
+
+function getNthFib(n) {
+  // Write your code here.
+		
+return fibioi(n-1)
+
+	
+}
+
+// Do not edit the line below.
+exports.getNthFib = getNthFib;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Tip: You can use the Array.isArray function to check whether an item
+// is a list or an integer.
+
+
+function sumpart(array , 	mulfac ) {
+	
+  	let sum = 0;
+		for ( let i = 0 ; i < array.length ; i++ ) {
+			
+				if( Array.isArray(array[i]) ){
+					
+				let ssaa  = sumpart(array[i], mulfac + 1);
+				sum = 	sum + ssaa;
+				
+				}else{
+					sum = sum + array[i];
+						
+				}
+		
+			console.log("  > " + array[i] )
+			
+	
+}
+	
+	return sum * mulfac
+}
+
+
+
+function productSum(array) {
+  // Write your code here.
+	// console.log(array)
+	let sum = 0;
+	for ( let i = 0 ; i< array.length ; i++ ) {
+	
+			if( Array.isArray(array[i]) ){
+				let ssaa  =sumpart(array[i],2);
+			console.log("   " + ssaa)
+				sum = 	sum + ssaa;
+			}else{
+				sum = sum + array[i];
+			}
+		
+		// console.log(sum)
+		
+		
+	}
+
+	return sum
+	
+}
+
+
+
+// Do not edit the line below.
+exports.productSum = productSum;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function binarySearch(array, target) {
+  // Write your code here.
+			console.log( array )
+			console.log( target )
+	
+	
+	let mid = 0  ;
+	let start = 0;
+	let  end = array.length-1 ;
+		let chake =    end  - start ;
+	
+	if (array[start] == target  ){
+		return start
+	}
+		if ( array[end] == target ){
+		return end
+	}
+	 
+	
+	while (  chake > 1 ){
+		
+				mid =   start + Math.floor(  (end - start) /2 );
+			console.log( start +" "+ mid + " " + end )
+		
+				if ( array[mid] ==  target ){
+					return mid 
+				}else if ( array[mid] > target ){
+						
+						end =  mid ;
+				}else if ( array[mid] < target   ){
+						start = mid   ;
+				}
+			chake =    end  - start ;
+		console.log(chake)
+		}
+	
+	return -1
+}
+
+// Do not edit the line below.
+exports.binarySearch = binarySearch;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function findThreeLargestNumbers(array) {
+  // Write your code here.
+	let arr = [ Number.NEGATIVE_INFINITY  , Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY ] ;
+
+
+	
+	for (let item of  array ){
+	console.log( arr ) 
+		if (item >  arr[2]){
+			arr[0] = arr[1]
+			arr[1] = arr[2]
+			arr[2] = item
+			
+		}else if(item > arr[1]){
+		arr[0]=arr[1]
+		arr[1] = item
+		}else if( item > arr[0]){
+			arr[0] = item
+		}
+			
+	}
+	
+	arr.sort((a , b) => a-b )
+	
+	return  arr
+}
+
+
+
+
+
+// Do not edit the line below.
+exports.findThreeLargestNumbers = findThreeLargestNumbers;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function bubbleSort(array) {
+  // Write your code here.
+	console.log(array)
+	
+	let bkup =0;
+	for(let i=0; i< array.length ; i++){
+			for(let j=0; j< array.length-1 ; j++){
+						if (array[j] > array[j+1]){
+							bkup = array[j];
+							array[j] = array[j+1];
+							array[j+1] = bkup;
+						}
+				
+			}
+	
+	}
+	console.log(array)
+	return array
+	
+}
+
+// Do not edit the line below.
+exports.bubbleSort = bubbleSort;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function insertionSort(array) {
+  // Write your code here.
+	let bkup = 0 ;
+	for (let i =0 ; i < array.length ; i++){
+				
+					
+		for ( let j = i ; j >0 ; j-- ){
+
+				if ( array[j]  <  array[j-1] ){
+					 bkup = array[j] ;
+					 array[j] =  array[j- 1];
+					 array[j -1 ] = bkup;
+				}
+		}
+
+	}
+	
+	return array
+	
+}
+
+// Do not edit the line below.
+exports.insertionSort = insertionSort;
+
+
+
+
+
+
+
+
+
+function selectionSort(array) {
+  // Write your code here.
+let bkup
+	for ( let i=0;i < array.length ; i++ ){
+		
+		for ( let j=i; j < array.length ; j++ ){
+						if(array[j] <  array[i] ){
+							bkup = array[j];
+							array[j] = array[i];
+							array[i] = bkup;
+						}
+			}
+		console.log(array)
+	 }
+	return array
+}
+
+// Do not edit the line below.
+exports.selectionSort = selectionSort;
+
+
+
+
+
+
+
+
+
+
+
+
+function isPalindrome(string) {
+  // Write your code here.
+	let spl =   string.split("")
+	console.log(spl)
+	let st = 0;
+	let en = spl.length-1;
+while (st < en){
+	if ( spl[st]  == spl[en] ){
+		st++;
+		en--;
+	}else{
+		return false;
+	}
+}
+	
+	return true;
+}
+
+// Do not edit the line below.
+exports.isPalindrome = isPalindrome;
+
+
+
+
+
+
+
+
+
+
+
+
+
+function caesarCipherEncryptor(string, key) {
+  // Write your code here.
+let res ;
+let str = string.split('')
+	console.log(str)
+	console.log(key)
+	int =0;
+	let final = "";
+	console.log("a".charCodeAt(0))
+	console.log("z".charCodeAt(0))
+	
+	for (let item  of str ){
+		let strl =  item.charCodeAt(0)
+		let vo =   ((strl-97 + key) % 26) +97; 
+				console.log("strl " + strl)
+				console.log("vo " + vo)
+
+		
+		 res = String.fromCharCode(vo ) 
+	final = final + res
+
+				console.log(res)
+				console.log(final)
+		
+	}
+	
+	
+return final 
+	
+	
+}
+
+// Do not edit the line below.
+exports.caesarCipherEncryptor = caesarCipherEncryptor;
+
+
+
+
+
+
+
+
+
+
+
+function runLengthEncoding(string) {
+
+	let str = string.split("")
+	console.log(str)
+	let sumbol = [""];
+	let fequntiy = [0];
+	let ind =0;
+ 	for (let  i =0 ; i < string.length ; i++ ){
+			if (str[i] === sumbol[ind] && 	fequntiy[ind] < 9){
+				fequntiy[ind] = fequntiy[ind] + 1;
+				
+			}else{
+				ind++;
+				sumbol[ind] = str[i];
+				fequntiy[ind] = 1
+			}
+		
+	console.log(sumbol)
+	console.log(fequntiy)
+	}
+	let restr = "";
+for (let id = 1; id < fequntiy.length; id++){
+	restr = restr + fequntiy[id] + sumbol[id]
+}
+	console.log(restr)
+return restr
+	}
+
+// Do not edit the line below.
+exports.runLengthEncoding = runLengthEncoding;
+
+
+
+
+
+
+
+
+
+
+function generateDocument(characters, document) {
+  // Write your code here.
+	let simbols  = {}
+		console.log(characters)
+
+	for ( let i = 0; i< characters.length ; i++ ){
+		if (simbols[characters[i]] >= 1){
+			simbols[characters[i]] = 1 + simbols[characters[i]];
+		}else{
+			simbols[characters[i]] = 1
+		}
+			console.log(simbols)
+	}
+
+	
+		for ( let i = 0; i< document.length ; i++ ){
+			if ( simbols[document[i]] > 0   ){
+					simbols[document[i]] = simbols[document[i]] -1
+			}else{
+				return false;
+			}
+		}
+	
+return true ;
+
+
+		
+}
+
+// Do not edit the line below.
+exports.generateDocument = generateDocument;
+
+
+
+
+
+
+
+
+
+
+
+
+
+function firstNonRepeatingCharacter(string) {
+    // Write your code here.
+    let str = string.split("")
+    console.log(str)
+    let symbol = {}
+    let list = []
+
+    for (let i = string.length - 1; i > -1; i--) {
+
+        if (symbol[str[i]] > -1) {
+
+            symbol[str[i]] = -2;
+        } else if (symbol[str[i]] == -2) {
+
+        } else {
+            list.push(str[i])
+            symbol[str[i]] = i;
+        }
+        console.log(symbol)
+
+    }
+
+
+    console.log(list)
+
+    let small = str.length - 1;
+    let minus = true;
+    for (let item of list) {
+
+
+        if (symbol[item] != -2 && symbol[item] <= small) {
+            small = symbol[item]
+            minus = false;
+            console.log(small)
+
+        }
+    }
+
+    if (minus) {
+        return -1;
+    } else {
+        return small;
+    }
+
+
+
+
+}
+
+// Do not edit the line below.
+exports.firstNonRepeatingCharacter = firstNonRepeatingCharacter;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
