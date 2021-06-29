@@ -1,0 +1,84 @@
+function sortedSquaredArray(array) {
+  // Write your code here.
+	
+	let negarr = [];
+	let posarr = [];
+	let i =0;
+	while ( array[i] < 0   && i <  array.length-1  ){
+		i++;
+	}
+	let go = true;
+	let posin ;
+	let negin = i;
+	
+	if (i == 0 ){
+		posin = 0; 
+	}else {
+		posin = i + 1;
+}
+
+
+	
+if (i == 0 ){
+	let res  = array.map(( item ) => {
+		return item*item;
+	} )
+	return res;
+}else if ( i == array.length-1 ) {
+	let res = [];
+	for (let n = i; n >= 0 ; n--   )
+		res.push( array[n]*array[n]  )
+		return res;
+}else {
+	let res = [];
+	posin = i;
+	negin = --i;
+
+	while (true){
+		
+		console.log(i +" "+  negin +" "+ posin )
+		if( array[posin]*array[posin]  <=  array[negin]*array[negin]  ){
+			res.push(array[posin]*array[posin]);
+			posin++
+		}else if( array[negin]*array[negin]  <=  array[posin]*array[posin] ){
+			res.push(array[negin]*array[negin]);
+			negin--;
+		}
+	
+		if (posin == array.length ){
+			break
+		}
+		if (negin == -1){
+			break;
+		}
+	}
+	
+
+	
+	if ( posin <  array.length ){
+		while (posin <  array.length ){
+			res.push(array[posin]*array[posin]);
+			posin++
+		}
+		
+	
+	}else if( negin > -1 ){
+		
+		while(negin > -1 ){
+			res.push(array[negin]*array[negin]);
+			negin--;
+		}
+		
+	}
+	return res; 
+	
+}
+	
+	
+	
+	
+	
+}
+
+// Do not edit the line below.
+exports.sortedSquaredArray = sortedSquaredArray;
